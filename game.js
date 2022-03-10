@@ -1,11 +1,44 @@
 /* GAME FUNCTIONS */
 
-// function to generate a random numeric value
-var randomNumber = function(min, max) {
-  var value = Math.floor(Math.random() * (max - min) + min);
-
-  return value;
+var enemyInfo = [
+    {
+      name: "Roborto",
+      attack: randomNumber(10,14)
+    },
+    {
+      name: "Amy Android",
+      attack: randomNumber(10,14)
+    },
+    {
+      name: "Robo Trumble",
+      attack: randomNumber(10,14)
+    }
+  ];
+  var playerInfo = {
+    name:window.prompt("What is your robot's name?"),
+    health:100,
+    attack: 10,
+    money: 10,
+    reset: function() {
+        this.health= 100;
+        this.money=10;
+        this.attack= 10;
+    },
+    refillHealth: function() {
+        this.health +=20;
+        this.money -= 7;
+    }
+    upgradeAttack: function() {
+        this.attack += 6;
+        this.money-=7;
+    }
 };
+// function to generate a random numeric value
+function randomNumber(min, max) {
+    var value = Math.floor(Math.random() * (max - min) + min);
+
+    return value;
+}
 
 // function to check if player wants to fight or skip
 var fightOrSkip = function() {
@@ -119,14 +152,11 @@ var fight = function(enemy) {
 // function to start a new game
 var startGame = function() {
   // reset player stats
-  playerHealth = 100;
-  playerAttack = 10;
-  playerMoney = 10;
-  playerInfo.reset();
+  
   
   //function to end the entire game
   var endGame = function() {
-      if (playerHealth> 0) {
+      if (playerInfo.name> 0) {
           window.alert("Great job, you've survived the game! You now have a score of " +playerMoney + ".");
       }
         else {
@@ -183,7 +213,7 @@ var startGame = function() {
 
   // after loop ends, we are either out of player.health or enemies to fight, so run the endGame function
   endGame();
-};
+
 
 // function to end the entire game
 var endGame = function() {
@@ -288,20 +318,7 @@ var playerInfo = {
   }
 };
 
-var enemyInfo = [
-  {
-    name: "Roborto",
-    attack: randomNumber(10, 14)
-  },
-  {
-    name: "Amy Android",
-    attack: randomNumber(10, 14)
-  },
-  {
-    name: "Robo Trumble",
-    attack: randomNumber(10, 14)
-  }
-];
+
 
 /* END GAME INFORMATION / VARIABLES */
 
